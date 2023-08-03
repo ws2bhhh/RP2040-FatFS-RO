@@ -1,4 +1,10 @@
 /*---------------------------------------------------------------------------/
+/ Define Filesystem offset here.
+/---------------------------------------------------------------------------*/
+
+#define FS_OFFSET 0
+
+/*---------------------------------------------------------------------------/
 /  Configurations of FatFs Module
 /---------------------------------------------------------------------------*/
 
@@ -8,14 +14,14 @@
 / Function Configurations
 /---------------------------------------------------------------------------*/
 
-#define FF_FS_READONLY	0
+#define FF_FS_READONLY	1
 /* This option switches read-only configuration. (0:Read/Write or 1:Read-only)
 /  Read-only configuration removes writing API functions, f_write(), f_sync(),
 /  f_unlink(), f_mkdir(), f_chmod(), f_rename(), f_truncate(), f_getfree()
 /  and optional writing functions as well. */
 
 
-#define FF_FS_MINIMIZE	0
+#define FF_FS_MINIMIZE	3
 /* This option defines minimization level to remove some basic API functions.
 /
 /   0: Basic functions are fully enabled.
@@ -84,7 +90,7 @@
 / Locale and Namespace Configurations
 /---------------------------------------------------------------------------*/
 
-#define FF_CODE_PAGE	932
+#define FF_CODE_PAGE	437
 /* This option specifies the OEM code page to be used on the target system.
 /  Incorrect code page setting can cause a file open failure.
 /
@@ -193,8 +199,8 @@
 /  function will be available. */
 
 
-#define FF_MIN_SS		512
-#define FF_MAX_SS		512
+#define FF_MIN_SS		4096
+#define FF_MAX_SS		4096
 /* This set of options configures the range of sector size to be supported. (512,
 /  1024, 2048 or 4096) Always set both 512 for most systems, generic memory card and
 /  harddisk, but a larger value may be required for on-board flash memory and some
