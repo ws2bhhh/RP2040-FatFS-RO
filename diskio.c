@@ -27,28 +27,30 @@ DSTATUS disk_status (
 	DSTATUS stat;
 	int result;
 
-	switch (pdrv) {
-	case DEV_RAM :
-		result = RAM_disk_status();
+	return RES_OK; // dummy response
+	
+	// switch (pdrv) {
+	// case DEV_RAM :
+	// 	result = RAM_disk_status();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
+	// 	return stat;
 
-	case DEV_MMC :
-		result = MMC_disk_status();
+	// case DEV_MMC :
+	// 	result = MMC_disk_status();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
+	// 	return stat;
 
-	case DEV_USB :
-		result = USB_disk_status();
+	// case DEV_USB :
+	// 	result = USB_disk_status();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
-	}
+	// 	return stat;
+	// }
 	return STA_NOINIT;
 }
 
@@ -65,28 +67,30 @@ DSTATUS disk_initialize (
 	DSTATUS stat;
 	int result;
 
-	switch (pdrv) {
-	case DEV_RAM :
-		result = RAM_disk_initialize();
+	return RES_OK; // dummy response
+	
+	// switch (pdrv) {
+	// case DEV_RAM :
+	// 	result = RAM_disk_initialize();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
+	// 	return stat;
 
-	case DEV_MMC :
-		result = MMC_disk_initialize();
+	// case DEV_MMC :
+	// 	result = MMC_disk_initialize();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
+	// 	return stat;
 
-	case DEV_USB :
-		result = USB_disk_initialize();
+	// case DEV_USB :
+	// 	result = USB_disk_initialize();
 
-		// translate the reslut code here
+	// 	// translate the reslut code here
 
-		return stat;
-	}
+	// 	return stat;
+	// }
 	return STA_NOINIT;
 }
 
@@ -99,41 +103,45 @@ DSTATUS disk_initialize (
 DRESULT disk_read (
 	BYTE pdrv,		/* Physical drive nmuber to identify the drive */
 	BYTE *buff,		/* Data buffer to store read data */
-	LBA_t sector,	/* Start sector in LBA */
+	LBA_t sector,		/* Start sector in LBA */
 	UINT count		/* Number of sectors to read */
 )
 {
 	DRESULT res;
 	int result;
+		
+	sector = XIP_BASE + FS_OFFSET + (sector << 12);
+	memcpy((void *)buff, (const void *)sector, count << 12);
+	return RES_OK; // dummy response
+	
+	// switch (pdrv) {
+	// case DEV_RAM :
+	// 	// translate the arguments here
 
-	switch (pdrv) {
-	case DEV_RAM :
-		// translate the arguments here
+	// 	result = RAM_disk_read(buff, sector, count);
 
-		result = RAM_disk_read(buff, sector, count);
+	// 	// translate the reslut code here
 
-		// translate the reslut code here
+	// 	return res;
 
-		return res;
+	// case DEV_MMC :
+	// 	// translate the arguments here
 
-	case DEV_MMC :
-		// translate the arguments here
+	// 	result = MMC_disk_read(buff, sector, count);
 
-		result = MMC_disk_read(buff, sector, count);
+	// 	// translate the reslut code here
 
-		// translate the reslut code here
+	// 	return res;
 
-		return res;
+	// case DEV_USB :
+	// 	// translate the arguments here
 
-	case DEV_USB :
-		// translate the arguments here
+	// 	result = USB_disk_read(buff, sector, count);
 
-		result = USB_disk_read(buff, sector, count);
+	// 	// translate the reslut code here
 
-		// translate the reslut code here
-
-		return res;
-	}
+	// 	return res;
+	// }
 
 	return RES_PARERR;
 }
@@ -148,14 +156,14 @@ DRESULT disk_read (
 
 DRESULT disk_write (
 	BYTE pdrv,			/* Physical drive nmuber to identify the drive */
-	const BYTE *buff,	/* Data to be written */
-	LBA_t sector,		/* Start sector in LBA */
+	const BYTE *buff,		/* Data to be written */
+	LBA_t sector,			/* Start sector in LBA */
 	UINT count			/* Number of sectors to write */
 )
 {
 	DRESULT res;
 	int result;
-
+	
 	switch (pdrv) {
 	case DEV_RAM :
 		// translate the arguments here
@@ -204,25 +212,27 @@ DRESULT disk_ioctl (
 	DRESULT res;
 	int result;
 
-	switch (pdrv) {
-	case DEV_RAM :
+	return RES_OK; // dummy response
+	
+	// switch (pdrv) {
+	// case DEV_RAM :
 
-		// Process of the command for the RAM drive
+	// 	// Process of the command for the RAM drive
 
-		return res;
+	// 	return res;
 
-	case DEV_MMC :
+	// case DEV_MMC :
 
-		// Process of the command for the MMC/SD card
+	// 	// Process of the command for the MMC/SD card
 
-		return res;
+	// 	return res;
 
-	case DEV_USB :
+	// case DEV_USB :
 
-		// Process of the command the USB drive
+	// 	// Process of the command the USB drive
 
-		return res;
-	}
+	// 	return res;
+	// }
 
 	return RES_PARERR;
 }
