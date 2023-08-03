@@ -28,6 +28,10 @@ extern "C" {
 
 #include "ffconf.h"		/* FatFs configuration options */
 
+#include "hardware/flash.h" 	/* For RP2040 */
+#include "pico/stdlib.h"
+#include <string.h>
+
 #if FF_DEFINED != FFCONF_DEF
 #error Wrong configuration file (ffconf.h).
 #endif
