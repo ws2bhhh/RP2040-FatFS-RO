@@ -1,9 +1,12 @@
 # RP2040-FatFS-RO
 An read-only FatFS implement for RP2040 on-board flash.
-# Define FS_OFFSET in ff.h first
-FS_OFFSET = File_system_start_address - XIP_BASE
+
+# Define FS_OFFSET in ffconf.h first
+FS_OFFSET = file_system_start_address
+
 # If it mounts successfully but keeps failing to find the target file(FRESULT = 4, aka FR_NO_FILE)
 Try to set the Volume Serial Number to 0 and remove the Volume Name before upload the image.
+
 # Sample code below, to prevent unknown problems
 ```
 #include "ff.h"
