@@ -110,8 +110,8 @@ DRESULT disk_read (
 	DRESULT res;
 	int result;
 		
-	sector = XIP_BASE + FS_OFFSET + (sector << 12);
-	memcpy((void *)buff, (const void *)sector, count << 12);
+	sector = FS_OFFSET + (sector << 12); // sector size 4096 = 2^12
+	memcpy((void *)buff, (const void *)sector, count << 12); // read 2^12 byte
 	return RES_OK; // dummy response
 	
 	// switch (pdrv) {
